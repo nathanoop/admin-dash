@@ -7,11 +7,11 @@
                     <h3 class="panel-title">Please Sign In</h3>
                 </div>
                 <div class="panel-body">
-                    {{if .Message }}
-                    {{if .Code eq "ERR" }}
+                    {{if .Message.Message }}
+                    {{if .Message.Code eq "ERR" }}
                     <div class="alert alert-danger">{{.Message}}</div>
                     {{end}}
-                    {{if .Code eq "SUCC" }}
+                    {{if .Message.Code eq "SUCC" }}
                     <div class="alert alert-success">{{.Message}}</div>
                     {{end}}
                     {{end}}

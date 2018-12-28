@@ -1,6 +1,7 @@
 package admsess
 
 import (
+	"log"
 	"net/http"
 
 	"github.com/gin-gonic/gin"
@@ -12,7 +13,9 @@ func Login(c *gin.Context) {
 	msg, msgStr := "", ""
 	msg = c.Param("msg")
 	if msg != "" {
+		msg = "ERR"
 		msgStr = utils.Errormessage(msg)
+		log.Println(msg, msgStr)
 	}
 	msgObj := utils.Message{msg, msgStr}
 	c.HTML(http.StatusOK, "admsess/login", gin.H{
