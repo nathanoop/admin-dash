@@ -8,6 +8,6 @@ import (
 
 // showLogin
 func showLogin(c *gin.Context) {
-	c.HTML(http.StatusOK, "auth/login", gin.H{
+	c.HTML(http.StatusOK, "admSess/login", gin.H{
 		"title": "Login"})
 }
