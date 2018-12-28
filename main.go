@@ -6,7 +6,7 @@ import (
 
 	"github.com/nathanoop/admin-dash/db"
 	GinHTMLRender "github.com/nathanoop/admin-dash/gin_html_render"
-	admSess "github.com/nathanoop/admin-dash/handlers/admSess"
+	admsess "github.com/nathanoop/admin-dash/handlers/admsess"
 	"github.com/nathanoop/admin-dash/middlewares"
 
 	"github.com/gin-gonic/gin"
@@ -47,7 +47,7 @@ func main() {
 	})
 
 	//Auth
-	router.GET("/login", admSess.showLogin())
+	router.GET("/login", admsess.showLogin)
 
 	// Start listening
 	port := Port
