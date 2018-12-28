@@ -1,6 +1,6 @@
 package utils
 
-func getErrorMessageResponse(errCode string) string {
+func Errormessage(errCode string) string {
 	var ErrorMessage = make(map[string]string)
 	ErrorMessage["ERRLGN001"] = "Username not found."
 	ErrorMessage["ERRLGN002"] = "Incorrect password."

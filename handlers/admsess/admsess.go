@@ -10,9 +10,9 @@ import (
 // Login
 func Login(c *gin.Context) {
 	msg, msgStr := "", ""
-	msg := c.Param("msg")
+	msg = c.Param("msg")
 	if msg != "" {
-		msgStr = utils.getErrorMessageResponse(msg)
+		msgStr = utils.Errormessage(msg)
 	}
 	msgObj := utils.Message{msg, msgStr}
 	c.HTML(http.StatusOK, "admsess/login", gin.H{
