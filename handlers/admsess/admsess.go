@@ -1,4 +1,4 @@
-package admSess
+package admsess
 
 import (
 	"net/http"
