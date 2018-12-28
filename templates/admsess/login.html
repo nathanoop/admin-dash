@@ -8,9 +8,14 @@
                 </div>
                 <div class="panel-body">
                     {{if .Message }}
+                    {{if .Code eq "ERR" }}
                     <div class="alert alert-danger">{{.Message}}</div>
                     {{end}}
-                    <form role="form" action="/authenticateUser" method="POST" id="loginForm">
+                    {{if .Code eq "SUCC" }}
+                    <div class="alert alert-success">{{.Message}}</div>
+                    {{end}}
+                    {{end}}
+                    <form role="form" action="/authenticate" method="POST" id="loginForm">
                         <fieldset>
                             <div class="form-group">
                                 <input class="form-control" placeholder="Username" id="username" name="username" type="text" autofocus required>

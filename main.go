@@ -48,6 +48,7 @@ func main() {
 
 	//Auth
 	router.GET("/login", admsess.Login)
+	router.POST("/authenticate", admsess.Authenticate)
 
 	// Start listening
 	port := Port
