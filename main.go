@@ -47,7 +47,7 @@ func main() {
 	})
 
 	//Auth
-	router.GET("/login", admSess.showLogin)
+	router.GET("/login", admSess.showLogin())
 
 	// Start listening
 	port := Port
