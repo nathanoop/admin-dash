@@ -6,6 +6,7 @@ import (
 
 	"github.com/nathanoop/admin-dash/db"
 	GinHTMLRender "github.com/nathanoop/admin-dash/gin_html_render"
+	"github.com/nathanoop/admin-dash/handlers/auth"
 	"github.com/nathanoop/admin-dash/middlewares"
 
 	"github.com/gin-gonic/gin"

@@ -8,7 +8,7 @@ import (
 
 const (
 	// CollectionArticle holds the name of the articles collection
-	CollectionArticle = "AdminSession"
+	CollectionAdminSession = "AdminSession"
 )
 
 // AdminSession model
