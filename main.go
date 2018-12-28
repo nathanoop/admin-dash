@@ -6,11 +6,10 @@ import (
 
 	"github.com/nathanoop/admin-dash/db"
 	GinHTMLRender "github.com/nathanoop/admin-dash/gin_html_render"
-	"github.com/nathanoop/admin-dash/handlers/auth"
+	"github.com/nathanoop/admin-dash/handlers/admSess"
 	"github.com/nathanoop/admin-dash/middlewares"
 
 	"github.com/gin-gonic/gin"
-	"golang.org/x/crypto/nacl/auth"
 )
 
 const (
@@ -48,7 +47,7 @@ func main() {
 	})
 
 	//Auth
-	router.GET("/login", auth.showLogin)
+	router.GET("/login", admSess.showLogin)
 
 	// Start listening
 	port := Port

@@ -1,4 +1,4 @@
-package auth
+package admSess
 
 import (
 	"net/http"
