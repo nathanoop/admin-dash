@@ -11,16 +11,17 @@ import (
 // Login
 func Login(c *gin.Context) {
 	msg, msgStr := "", ""
-	msg = c.Param("msg")
+	msgObj := c.Request.URL.Query()
+	msg = msgObj["msg"][0]
 	if msg != "" {
 		msg = "ERR"
 		msgStr = utils.Errormessage(msg)
 		log.Println(msg, msgStr)
 	}
-	msgObj := utils.Message{msg, msgStr}
+	viewObj := utils.Message{msg, msgStr}
 	c.HTML(http.StatusOK, "admsess/login", gin.H{
 		"title":   "Login",
-		"message": msgObj})
+		"message": viewObj})
 }
 
 func Authenticate(c *gin.Context) {
