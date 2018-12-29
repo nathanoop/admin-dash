@@ -20,3 +20,18 @@ func Errormessage(errCode string) string {
 	ErrorMessage["ERRADM009"] = "Admin user delete failed"
 	return ErrorMessage[errCode]
 }
+
+func Notificationobj(queryObj map[string][]string) Message {
+	msg, msgStr, cls := "", "", ""
+	var viewObj = Message{}
+	if queryObj != nil && queryObj["msg"] != nil {
+		msg = queryObj["msg"][0]
+		if msg != "" {
+			msgStr = Errormessage(msg)
+			cls = "alert-danger"
+		}
+		viewObj = Message{msg, msgStr, cls}
+		return viewObj
+	}
+	return viewObj
+}
