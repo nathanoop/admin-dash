@@ -20,7 +20,7 @@ func Login(c *gin.Context) {
 	msgObj := utils.Message{msg, msgStr}
 	c.HTML(http.StatusOK, "admsess/login", gin.H{
 		"title":   "Login",
-		"Message": msgObj})
+		"message": msgObj})
 }
 
 func Authenticate(c *gin.Context) {
