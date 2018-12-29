@@ -26,5 +26,6 @@ type (
 	Message struct {
 		Code    string
 		Message string
+		Class   string
 	}
 )

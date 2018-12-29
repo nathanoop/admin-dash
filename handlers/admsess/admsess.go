@@ -1,7 +1,6 @@
 package admsess
 
 import (
-	"log"
 	"net/http"
 
 	"github.com/gin-gonic/gin"
@@ -10,15 +9,17 @@ import (
 
 // Login
 func Login(c *gin.Context) {
-	msg, msgStr := "", ""
+	msg, msgStr, cls := "", "", ""
+	var viewObj = utils.Message{}
 	msgObj := c.Request.URL.Query()
-	msg = msgObj["msg"][0]
-	if msg != "" {
-		msgStr = utils.Errormessage(msg)
-		msg = "ERR"
-		log.Println(msg, msgStr)
+	if msgObj != nil && msgObj["msg"] != nil {
+		msg = msgObj["msg"][0]
+		if msg != "" {
+			msgStr = utils.Errormessage(msg)
+			cls := "alert-danger"
+		}
+		viewObj = utils.Message{msg, msgStr, cls}
 	}
-	viewObj := utils.Message{msg, msgStr}
 	c.HTML(http.StatusOK, "admsess/login", gin.H{
 		"title":   "Login",
 		"message": viewObj})

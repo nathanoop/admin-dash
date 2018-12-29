@@ -7,16 +7,9 @@
                     <h3 class="panel-title">Please Sign In</h3>
                 </div>
                 <div class="panel-body">
-                    {{if .Message.Message }}
-                    {{if .Message.Code eq "ERR" }}
-                    <div class="alert alert-danger">{{.Message}}</div>
+                    {{if .message.Message }}
+                    <div class="alert {{.message.Class}}">{{.message.Message}}</div>
                     {{end}}
-                    {{if .Message.Code eq "SUCC" }}
-                    <div class="alert alert-success">{{.Message}}</div>
-                    {{end}}
-                    {{end}}
-                    <div style="display:none">{{.message.Code}}</div>
-                    <div style="display:none">{{.message}}</div>
                     <form role="form" action="/authenticate" method="POST" id="loginForm">
                         <fieldset>
                             <div class="form-group">
