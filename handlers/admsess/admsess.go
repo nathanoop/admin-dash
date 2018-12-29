@@ -13,10 +13,9 @@ func Login(c *gin.Context) {
 	msg, msgStr := "", ""
 	msgObj := c.Request.URL.Query()
 	msg = msgObj["msg"][0]
-	log.Println(msg)
 	if msg != "" {
-		msg = "ERR"
 		msgStr = utils.Errormessage(msg)
+		msg = "ERR"
 		log.Println(msg, msgStr)
 	}
 	viewObj := utils.Message{msg, msgStr}
