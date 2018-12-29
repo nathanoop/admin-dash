@@ -16,7 +16,7 @@ func Login(c *gin.Context) {
 		msg = msgObj["msg"][0]
 		if msg != "" {
 			msgStr = utils.Errormessage(msg)
-			cls := "alert-danger"
+			cls = "alert-danger"
 		}
 		viewObj = utils.Message{msg, msgStr, cls}
 	}
