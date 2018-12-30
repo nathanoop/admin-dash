@@ -1,8 +1,9 @@
 package dbhelpers
 
 import (
-	"admin-dash/models"
 	"log"
+
+	"github.com/nathanoop/admin-dash/models"
 
 	"github.com/nathanoop/admin-dash/utils"
 

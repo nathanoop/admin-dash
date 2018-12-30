@@ -29,7 +29,8 @@ func Createadminuserutils(c *gin.Context, firstname string, lastname string, use
 }
 
 func Getadminuserbyidutils(c *gin.Context, adminId string) (adm models.Admin, err error) {
-	adm, err = store.Getadminuserbyid(c, adminId)
+	admobj, er := store.Getadminuserbyid(c, adminId)
+	log.Println("adminbyuserid", admobj.Id.Hex(), er)
 	return
 }
 
@@ -60,7 +61,8 @@ func Listadminusersutils(c *gin.Context, page int) (adms []models.Admin, err err
 	if page > 0 {
 		skip = limit * page
 	}
-	adms, err = store.Listadminusers(c, limit, skip)
+	lstadms, er := store.Listadminusers(c, limit, skip)
+	log.Println("adminbyuserid", len(lstadms), er)
 	return
 }
 
