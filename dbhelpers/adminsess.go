@@ -1,6 +1,7 @@
 package dbhelpers
 
 import (
+	"admin-dash/models"
 	"log"
 
 	"github.com/nathanoop/admin-dash/utils"
@@ -21,7 +22,7 @@ func Authenticateadmin(c *gin.Context, userName string, password string) (msgCod
 				return utils.ERR_LOGIN_DELETED_ACCNT, adminId
 			} else {
 				// Validate password
-				err = bcrypt.CompareHashAndPassword(c, result.HashPassword, []byte(password))
+				err = bcrypt.CompareHashAndPassword(result.HashPassword, []byte(password))
 				if err != nil {
 					return utils.ERR_LOGIN_INC_PSSWD, adminId
 				} else {
@@ -44,7 +45,7 @@ func Getadmintoken(c *gin.Context, adminId string, uaStr string) string {
 	}
 }
 
-func Validateadmintoken(c *gin.Context, token string) (isValidToken bool, adminObj Admin) {
+func Validateadmintoken(c *gin.Context, token string) (isValidToken bool, adminObj models.Admin) {
 	adminId := ""
 	if token != "" {
 		isValidToken, adminId = store.Getadminsessionbytoken(c, token)

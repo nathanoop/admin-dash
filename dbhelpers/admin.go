@@ -1,6 +1,7 @@
 package dbhelpers
 
 import (
+	"admin-dash/models"
 	"log"
 
 	"github.com/nathanoop/admin-dash/utils"
@@ -27,8 +28,8 @@ func Createadminuserutils(c *gin.Context, firstname string, lastname string, use
 	return msg
 }
 
-func Getadminuserbyidutils(c *gin.Context, adminId string) (adm Admin, err error) {
-	adm, err = store.getAdminUserFromId(c, adminId)
+func Getadminuserbyidutils(c *gin.Context, adminId string) (adm models.Admin, err error) {
+	adm, err = store.Getadminuserbyid(c, adminId)
 	return
 }
 
@@ -53,7 +54,7 @@ func Updateadminuserpasswordutils(c *gin.Context, password string, modifiedby st
 	return msg
 }
 
-func Listadminusersutils(c *gin.Context, page int) (adms []Admin, err error) {
+func Listadminusersutils(c *gin.Context, page int) (adms []models.Admin, err error) {
 	limit := utils.DEF_PAGE_COUNT
 	skip := 0
 	if page > 0 {
