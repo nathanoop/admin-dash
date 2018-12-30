@@ -3,6 +3,8 @@ package handlers
 import (
 	"net/http"
 
+	"github.com/nathanoop/admin-dash/models"
+
 	"github.com/gin-gonic/gin"
 	"github.com/nathanoop/admin-dash/dbhelpers"
 	"github.com/nathanoop/admin-dash/utils"
@@ -12,19 +14,18 @@ import (
 func Login(c *gin.Context) {
 	msgObj := c.Request.URL.Query()
 	viewObj := utils.Notificationobj(msgObj)
-	viewModal := utils.Admintoken{nil , models.Admin}
+	viewModal := utils.Admintoken{nil, models.Admin}
 	c.HTML(http.StatusOK, "admsess/login", gin.H{
-		"title":   "Login",
-		"message": viewObj,
-		"tokenobj" : viewModal
-		j})
+		"title":    "Login",
+		"message":  viewObj,
+		"tokenobj": viewModal})
 }
 
 func Authenticate(c *gin.Context) {
 	username := c.PostForm("username")
 	password := c.PostForm("password")
 	if username != "" && password != "" {
-		responseStr, adminId := dbhelpers.Authenticateadmin(c,username, password)
+		responseStr, adminId := dbhelpers.Authenticateadmin(c, username, password)
 		if responseStr == "" {
 			ua := r.Header.Get("User-Agent")
 			accessToken := dbhelpers.Getadmintoken(adminId, ua)
@@ -50,9 +51,9 @@ func Dashboard(c *gin.Context) {
 			viewObj := utils.Notificationobj(msgObj)
 			viewModal := utils.Admintoken{token, adminObj}
 			c.HTML(http.StatusOK, "admsess/dashboard", gin.H{
-				"title":   "Admin Dashboard",
-				"message": viewObj,
-				"tokenobj" : viewModal})
+				"title":    "Admin Dashboard",
+				"message":  viewObj,
+				"tokenobj": viewModal})
 		} else {
 			c.Redirect(http.StatusMovedPermanently, "/?msg="+utils.ERR_LOGIN_INV_TOKEN)
 		}
