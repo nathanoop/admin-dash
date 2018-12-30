@@ -14,7 +14,7 @@ import (
 func Createadminuser(c *gin.Context) {
 	token := c.Param("token")
 	if token != "" {
-		isValidToken, adminObj := dbhelpers.Validateadmintoken(token)
+		isValidToken, adminObj := dbhelpers.Validateadmintoken(c, token)
 		if isValidToken == true {
 			msgObj := c.Request.URL.Query()
 			viewObj := utils.Notificationobj(msgObj)
@@ -89,7 +89,7 @@ func Editadminuser(c *gin.Context) {
 					"tokenobj":  viewModal,
 					"editadmin": admObj})
 			} else {
-				admObj = adminObj
+				admObj := adminObj
 				c.HTML(http.StatusOK, "admin/admineditform", gin.H{
 					"title":     "Edit Admin " + admObj.FirstName + " " + admObj.LastName,
 					"message":   viewObj,
@@ -155,7 +155,7 @@ func Editsettingsadminuser(c *gin.Context) {
 					"tokenobj":  viewModal,
 					"editadmin": admObj})
 			} else {
-				admObj = adminObj
+				admObj := adminObj
 				c.HTML(http.StatusOK, "admin/adminsettingsform", gin.H{
 					"title":     "Edit Settings " + admObj.FirstName + " " + admObj.LastName,
 					"message":   viewObj,
@@ -205,10 +205,10 @@ func Changeadminpassword(c *gin.Context) {
 		isValidToken, adminObj := dbhelpers.Validateadmintoken(c, token)
 		if isValidToken == true {
 			password := c.PostForm("password")
+			adminId := c.Param("adminId")
 			confirmpassword := c.PostForm("confirmpassword")
 			if password != "" && confirmpassword != "" {
 				if password == confirmpassword {
-					adminId := c.Param("adminId")
 					modifiedby := adminObj.Id.Hex()
 					msg := dbhelpers.Updateadminuserpasswordutils(c, password, modifiedby, adminId)
 					if msg != "" {
@@ -238,7 +238,7 @@ func Deleteadminuser(c *gin.Context) {
 			adminId := c.Param("adminId")
 			modifiedby := adminObj.Id.Hex()
 			if modifiedby != adminId {
-				msg := dbhelper.Deleteadminuserutils(c, adminId, modifiedby)
+				msg := dbhelpers.Deleteadminuserutils(c, adminId, modifiedby)
 				if msg == "" {
 					c.Redirect(http.StatusMovedPermanently, "/admin/list/"+token)
 				} else {
