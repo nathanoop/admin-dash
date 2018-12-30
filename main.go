@@ -6,7 +6,7 @@ import (
 
 	"github.com/nathanoop/admin-dash/db"
 	GinHTMLRender "github.com/nathanoop/admin-dash/gin_html_render"
-	"github.com/nathanoop/admin-dash/handlers/admsess"
+	"github.com/nathanoop/admin-dash/handlers"
 	"github.com/nathanoop/admin-dash/middlewares"
 
 	"github.com/gin-gonic/gin"
@@ -47,8 +47,21 @@ func main() {
 	})
 
 	//Auth
-	router.GET("/login", admsess.Login)
-	router.POST("/authenticate", admsess.Authenticate)
+	router.GET("/login", handlers.Login)
+	router.POST("/authenticate", handlers.Authenticate)
+	router.GET("/dashboard/:token", handlers.Dashboard)
+	router.GET("/logout/:token", handlers.Logout)
+
+	router.GET("/admin/create/:token", handlers.Createadminuser)
+	router.POST("/admin/save/:token", handlers.Saveadminuser)
+	router.GET("/admin/list/:token", handlers.Listadminuser)
+	router.GET("/admin/edit/:token/:adminId", handlers.Editadminuser)
+	router.GET("/profile/:token/:adminId", handlers.Editadminuser)
+	router.GET("/settings/:token/:adminId", handlers.Editsettingsadminuser)
+	router.POST("/admin/update/:token/:adminId", handlers.Updateadminuser)
+	router.POST("/admin/changeusername/:token/:adminId", handlers.Changeadminusername)
+	router.POST("/admin/changepassword/:token/:adminId", handlers.Changeadminpassword)
+	router.GET("/admin/delete/:token/:adminId", handlers.Deleteadminuser)
 
 	// Start listening
 	port := Port

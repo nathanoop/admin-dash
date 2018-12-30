@@ -1,0 +1,19 @@
+{{define "content"}}
+<div id="page-wrapper" style="min-height: 635px;">
+  <div class="container-fluid">
+      <div class="row">
+          <div class="col-lg-12">
+              <h1 class="page-header">Dashboard</h1>
+          </div>
+          <div class="row">
+              <div class="col-lg-12">
+                    {{if .message.Message }}
+                    <div class="alert {{.message.Class}}">{{.message.Message}}</div>
+                    {{end}}
+              </div>
+          </div>
+          <!-- /.col-lg-12 -->
+      </div>
+  </div>
+</div>
+{{end}}

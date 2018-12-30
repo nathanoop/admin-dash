@@ -1,5 +1,7 @@
 package utils
 
+import "regexp"
+
 func Errormessage(errCode string) string {
 	var ErrorMessage = make(map[string]string)
 	ErrorMessage["ERRLGN001"] = "Username not found."
@@ -8,6 +10,7 @@ func Errormessage(errCode string) string {
 	ErrorMessage["ERRLGN004"] = "Invalid Session token."
 	ErrorMessage["ERRLGN005"] = "User logged out"
 	ErrorMessage["ERRLGN06"] = "Deleted user account, cannot login"
+	ErrorMessage["ERRLGN07"] = "Username, password empty"
 	ErrorMessage["ERRADM001"] = "Required fields missing."
 	ErrorMessage["ERRADM002"] = "Password, Confirm password not the same."
 	ErrorMessage["ERRADM003"] = "Password hashing error."
@@ -19,6 +22,14 @@ func Errormessage(errCode string) string {
 	ErrorMessage["ERRADM008"] = "Admin cannot delete self"
 	ErrorMessage["ERRADM009"] = "Admin user delete failed"
 	return ErrorMessage[errCode]
+}
+
+func Getqueryparams(queryObj map[string][]string, name string) string {
+	if queryObj != nil && queryObj[name] != nil {
+		value := queryObj[name][0]
+		return value
+	}
+	return ""
 }
 
 func Notificationobj(queryObj map[string][]string) Message {
@@ -34,4 +45,11 @@ func Notificationobj(queryObj map[string][]string) Message {
 		return viewObj
 	}
 	return viewObj
+}
+
+func getBrowser(uastr string) string {
+	regexpStr := `(?i)(firefox|msie|chrome|safari)[/\s]([/\d.]+)`
+	r, _ := regexp.Compile(regexpStr)
+	match := r.FindString(uastr)
+	return match
 }
