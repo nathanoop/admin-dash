@@ -72,8 +72,9 @@ func Getpageobj(total int, page int) Pageobj {
 	log.Println("Getpageobj", fromRow, toRow, total, noOfPages)
 	var arrPages []int
 	if noOfPages > 0 {
-		for i := 1; i <= noOfPages; i++ {
-			arrPages[i-1] = i
+		arrPages := make([]int, (noOfPages-1)+1)
+		for i := range arrPages {
+			arrPages[i] = 1 + i
 		}
 	}
 	log.Println("Getpageobj", fromRow, toRow, total, noOfPages, arrPages)
