@@ -63,7 +63,7 @@ func Listadminusersutils(c *gin.Context, page int) (adms []models.Admin, err err
 		skip = limit * page
 	}
 	adms, err = store.Listadminusers(c, limit, skip)
-	log.Println("Listadminusersutils", len(adms), er)
+	log.Println("Listadminusersutils", len(adms), err)
 	return
 }
 
