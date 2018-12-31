@@ -175,9 +175,6 @@ func Changeadminusername(c *gin.Context) {
 	if token != "" {
 		isValidToken, adminObj := dbhelpers.Validateadmintoken(c, token)
 		if isValidToken == true {
-			msgObj := c.Request.URL.Query()
-			viewObj := utils.Notificationobj(msgObj)
-			viewModal := utils.Admintoken{token, adminObj}
 			adminId := c.Param("adminId")
 			username := c.PostForm("username")
 			if username != "" {
@@ -274,7 +271,7 @@ func Listadminuser(c *gin.Context) {
 			adms, err := dbhelpers.Listadminusersutils(c, page)
 			if err != nil {
 				msg := utils.ERR_ADMIN_LISTING
-				viewObj := utils.Notificationobjfromstr(msg)
+				viewObj = utils.Notificationobjfromstr(msg)
 			}
 			c.HTML(http.StatusOK, "admin/adminlist", gin.H{
 				"title":     "List  Admins  ",
