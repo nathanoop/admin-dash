@@ -59,7 +59,6 @@ func Updateadminuserpasswordutils(c *gin.Context, password string, modifiedby st
 func Listadminusersutils(c *gin.Context, page int) (adms []models.Admin, total int, err error) {
 	limit := utils.DEF_PAGE_COUNT
 	skip := 0
-	total := 0
 	if page > 0 {
 		skip = limit * page
 	}
