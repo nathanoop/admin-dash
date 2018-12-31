@@ -33,17 +33,23 @@ func Getqueryparams(queryObj map[string][]string, name string) string {
 }
 
 func Notificationobj(queryObj map[string][]string) Message {
-	msg, msgStr, cls := "", "", ""
+	msg := ""
 	var viewObj = Message{}
 	if queryObj != nil && queryObj["msg"] != nil {
 		msg = queryObj["msg"][0]
-		if msg != "" {
-			msgStr = Errormessage(msg)
-			cls = "alert-danger"
-		}
-		viewObj = Message{msg, msgStr, cls}
+		viewObj = Notificationobjfromstr(msg)
 		return viewObj
 	}
+	return viewObj
+}
+
+func Notificationobjfromstr(msg string) Message {
+	msg, msgStr, cls := "", "", ""
+	if msg != "" {
+		msgStr = Errormessage(msg)
+		cls = "alert-danger"
+	}
+	viewObj := Message{msg, msgStr, cls}
 	return viewObj
 }
 

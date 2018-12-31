@@ -271,10 +271,10 @@ func Listadminuser(c *gin.Context) {
 			if p == "" {
 				page = 0
 			}
-			adms, err := dbhelpers.Listadminusersutils(page)
+			adms, err := dbhelpers.Listadminusersutils(c, page)
 			if err != nil {
-				msg = utils.ERR_ADMIN_LISTING
-				viewObj = utils.Notificationobj(msgObj)
+				msg := utils.ERR_ADMIN_LISTING
+				viewObj := utils.Notificationobjfromstr(msg)
 			}
 			c.HTML(http.StatusOK, "admin/adminlist", gin.H{
 				"title":     "List  Admins  ",
