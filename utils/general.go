@@ -1,6 +1,9 @@
 package utils
 
-import "regexp"
+import (
+	"log"
+	"regexp"
+)
 
 func Errormessage(errCode string) string {
 	var ErrorMessage = make(map[string]string)
@@ -38,6 +41,7 @@ func Notificationobj(queryObj map[string][]string) Message {
 	if queryObj != nil && queryObj["msg"] != nil {
 		msg = queryObj["msg"][0]
 		viewObj = Notificationobjfromstr(msg)
+		log.Println("Notification Obj", viewObj)
 		return viewObj
 	}
 	return viewObj
@@ -50,6 +54,7 @@ func Notificationobjfromstr(msg string) Message {
 		cls = "alert-danger"
 	}
 	viewObj := Message{msg, msgStr, cls}
+	log.Println("Notificationobjfromstr", viewObj)
 	return viewObj
 }
 
