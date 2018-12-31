@@ -39,6 +39,7 @@ func Notificationobj(queryObj map[string][]string) Message {
 	msg := ""
 	var viewObj = Message{}
 	if queryObj != nil && queryObj["msg"] != nil {
+		log.Println("Query Obj", queryObj)
 		msg = queryObj["msg"][0]
 		viewObj = Notificationobjfromstr(msg)
 		log.Println("Notification Obj", viewObj)
