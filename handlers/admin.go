@@ -273,6 +273,7 @@ func Listadminuser(c *gin.Context) {
 				msg := utils.ERR_ADMIN_LISTING
 				viewObj = utils.Notificationobjfromstr(msg)
 			}
+			log.Println("GetListadminuserpageobj", total, page)
 			pageObj := utils.Getpageobj(total, page)
 			c.HTML(http.StatusOK, "admin/adminlist", gin.H{
 				"title":     "List  Admins  ",
