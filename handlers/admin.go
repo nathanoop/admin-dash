@@ -24,10 +24,10 @@ func Createadminuser(c *gin.Context) {
 				"message":  viewObj,
 				"tokenobj": viewModal})
 		} else {
-			c.Redirect(http.StatusMovedPermanently, "/?msg="+utils.ERR_LOGIN_INV_TOKEN)
+			c.Redirect(http.StatusMovedPermanently, utils.SITE_URL_ADMIN_LOGIN+"?msg="+utils.ERR_LOGIN_INV_TOKEN)
 		}
 	} else {
-		c.Redirect(http.StatusMovedPermanently, "/?msg="+utils.ERR_LOGIN_INV_TOKEN)
+		c.Redirect(http.StatusMovedPermanently, utils.SITE_URL_ADMIN_LOGIN+"?msg="+utils.ERR_LOGIN_INV_TOKEN)
 	}
 }
 
@@ -48,22 +48,22 @@ func Saveadminuser(c *gin.Context) {
 				if password == confirmpassword {
 					msg := dbhelpers.Createadminuserutils(c, firstname, lastname, username, password, useremail, mobile, createdby)
 					if msg != "" {
-						c.Redirect(http.StatusMovedPermanently, "/admin/create/"+token+"?msg="+msg)
+						c.Redirect(http.StatusMovedPermanently, utils.SITE_URL_ADMIN_CREATE+"/"+token+"?msg="+msg)
 					} else {
-						c.Redirect(http.StatusMovedPermanently, "/admin/list/"+token)
+						c.Redirect(http.StatusMovedPermanently, utils.SITE_URL_ADMIN_LIST+"/"+token)
 					}
 				} else {
-					c.Redirect(http.StatusMovedPermanently, "/admin/create/"+token+"?msg="+utils.ERR_ADM_CREATE_PWD_ERR)
+					c.Redirect(http.StatusMovedPermanently, utils.SITE_URL_ADMIN_CREATE+"/"+token+"?msg="+utils.ERR_ADM_CREATE_PWD_ERR)
 				}
 			} else {
-				c.Redirect(http.StatusMovedPermanently, "/admin/create/"+token+"?msg="+utils.ERR_ADM_CREATE_REQ_FIELDS)
+				c.Redirect(http.StatusMovedPermanently, utils.SITE_URL_ADMIN_CREATE+"/"+token+"?msg="+utils.ERR_ADM_CREATE_REQ_FIELDS)
 			}
 
 		} else {
-			c.Redirect(http.StatusMovedPermanently, "/?msg="+utils.ERR_LOGIN_INV_TOKEN)
+			c.Redirect(http.StatusMovedPermanently, utils.SITE_URL_ADMIN_LOGIN+"?msg="+utils.ERR_LOGIN_INV_TOKEN)
 		}
 	} else {
-		c.Redirect(http.StatusMovedPermanently, "/?msg="+utils.ERR_LOGIN_INV_TOKEN)
+		c.Redirect(http.StatusMovedPermanently, utils.SITE_URL_ADMIN_LOGIN+"?msg="+utils.ERR_LOGIN_INV_TOKEN)
 	}
 }
 
@@ -79,7 +79,7 @@ func Editadminuser(c *gin.Context) {
 			if adminId != adminObj.Id.Hex() {
 				admObj, err := dbhelpers.Getadminuserbyidutils(c, adminId)
 				if err != nil {
-					c.Redirect(http.StatusMovedPermanently, "/dashboard/token?msg="+utils.ERR_DASHBRD_INV_ADMINID)
+					c.Redirect(http.StatusMovedPermanently, utils.SITE_URL_ADMIN_DASHBOARD+"/token?msg="+utils.ERR_DASHBRD_INV_ADMINID)
 				} else {
 					log.Println("editing admin obj", admObj.Id.Hex())
 				}
@@ -97,10 +97,10 @@ func Editadminuser(c *gin.Context) {
 					"editadmin": admObj})
 			}
 		} else {
-			c.Redirect(http.StatusMovedPermanently, "/?msg="+utils.ERR_LOGIN_INV_TOKEN)
+			c.Redirect(http.StatusMovedPermanently, utils.SITE_URL_ADMIN_LOGIN+"?msg="+utils.ERR_LOGIN_INV_TOKEN)
 		}
 	} else {
-		c.Redirect(http.StatusMovedPermanently, "/?msg="+utils.ERR_LOGIN_INV_TOKEN)
+		c.Redirect(http.StatusMovedPermanently, utils.SITE_URL_ADMIN_LOGIN+"?msg="+utils.ERR_LOGIN_INV_TOKEN)
 	}
 }
 
@@ -118,18 +118,18 @@ func Updateadminuser(c *gin.Context) {
 			if firstname != "" && lastname != "" && useremail != "" && mobile != "" {
 				msg := dbhelpers.Updateadminuserutils(c, firstname, lastname, useremail, mobile, modifiedby, adminId)
 				if msg != "" {
-					c.Redirect(http.StatusMovedPermanently, "/dashboard/"+token+"?msg="+msg)
+					c.Redirect(http.StatusMovedPermanently, utils.SITE_URL_ADMIN_DASHBOARD+"/"+token+"?msg="+msg)
 				} else {
-					c.Redirect(http.StatusMovedPermanently, "/admin/edit/"+token+"/"+adminId)
+					c.Redirect(http.StatusMovedPermanently, utils.SITE_URL_ADMIN_EDIT+"/"+token+"/"+adminId)
 				}
 			} else {
-				c.Redirect(http.StatusMovedPermanently, "/admin/edit/"+token+"/"+adminId+"?msg="+utils.ERR_ADM_CREATE_REQ_FIELDS)
+				c.Redirect(http.StatusMovedPermanently, utils.SITE_URL_ADMIN_EDIT+"/"+token+"/"+adminId+"?msg="+utils.ERR_ADM_CREATE_REQ_FIELDS)
 			}
 		} else {
-			c.Redirect(http.StatusMovedPermanently, "/?msg="+utils.ERR_LOGIN_INV_TOKEN)
+			c.Redirect(http.StatusMovedPermanently, utils.SITE_URL_ADMIN_LOGIN+"?msg="+utils.ERR_LOGIN_INV_TOKEN)
 		}
 	} else {
-		c.Redirect(http.StatusMovedPermanently, "/?msg="+utils.ERR_LOGIN_INV_TOKEN)
+		c.Redirect(http.StatusMovedPermanently, utils.SITE_URL_ADMIN_LOGIN+"?msg="+utils.ERR_LOGIN_INV_TOKEN)
 	}
 }
 
@@ -145,7 +145,7 @@ func Editsettingsadminuser(c *gin.Context) {
 			if adminId != adminObj.Id.Hex() {
 				admObj, err := dbhelpers.Getadminuserbyidutils(c, adminId)
 				if err != nil {
-					c.Redirect(http.StatusMovedPermanently, "/dashboard/token?msg="+utils.ERR_DASHBRD_INV_ADMINID)
+					c.Redirect(http.StatusMovedPermanently, utils.SITE_URL_ADMIN_DASHBOARD+"/token?msg="+utils.ERR_DASHBRD_INV_ADMINID)
 				} else {
 					log.Println("edit setting admin obj", admObj.Id.Hex())
 				}
@@ -163,10 +163,10 @@ func Editsettingsadminuser(c *gin.Context) {
 					"editadmin": admObj})
 			}
 		} else {
-			c.Redirect(http.StatusMovedPermanently, "/?msg="+utils.ERR_LOGIN_INV_TOKEN)
+			c.Redirect(http.StatusMovedPermanently, utils.SITE_URL_ADMIN_LOGIN+"?msg="+utils.ERR_LOGIN_INV_TOKEN)
 		}
 	} else {
-		c.Redirect(http.StatusMovedPermanently, "/?msg="+utils.ERR_LOGIN_INV_TOKEN)
+		c.Redirect(http.StatusMovedPermanently, utils.SITE_URL_ADMIN_LOGIN+"?msg="+utils.ERR_LOGIN_INV_TOKEN)
 	}
 }
 
@@ -181,18 +181,18 @@ func Changeadminusername(c *gin.Context) {
 				modifiedby := adminObj.Id.Hex()
 				msg := dbhelpers.Updateadminusernameutils(c, username, modifiedby, adminId)
 				if msg != "" {
-					c.Redirect(http.StatusMovedPermanently, "/dashboard/"+token+"?msg="+msg)
+					c.Redirect(http.StatusMovedPermanently, utils.SITE_URL_ADMIN_DASHBOARD+"/"+token+"?msg="+msg)
 				} else {
-					c.Redirect(http.StatusMovedPermanently, "/settings/"+token+"/"+adminId)
+					c.Redirect(http.StatusMovedPermanently, utils.SITE_URL_SETTING+"/"+token+"/"+adminId)
 				}
 			} else {
-				c.Redirect(http.StatusMovedPermanently, "/settings/"+token+"/"+adminId+"?msg="+utils.ERR_ADM_CREATE_REQ_FIELDS)
+				c.Redirect(http.StatusMovedPermanently, utils.SITE_URL_SETTING+"/"+token+"/"+adminId+"?msg="+utils.ERR_ADM_CREATE_REQ_FIELDS)
 			}
 		} else {
-			c.Redirect(http.StatusMovedPermanently, "/?msg="+utils.ERR_LOGIN_INV_TOKEN)
+			c.Redirect(http.StatusMovedPermanently, utils.SITE_URL_ADMIN_LOGIN+"?msg="+utils.ERR_LOGIN_INV_TOKEN)
 		}
 	} else {
-		c.Redirect(http.StatusMovedPermanently, "/?msg="+utils.ERR_LOGIN_INV_TOKEN)
+		c.Redirect(http.StatusMovedPermanently, utils.SITE_URL_ADMIN_LOGIN+"?msg="+utils.ERR_LOGIN_INV_TOKEN)
 	}
 }
 
@@ -209,21 +209,21 @@ func Changeadminpassword(c *gin.Context) {
 					modifiedby := adminObj.Id.Hex()
 					msg := dbhelpers.Updateadminuserpasswordutils(c, password, modifiedby, adminId)
 					if msg != "" {
-						c.Redirect(http.StatusMovedPermanently, "/dashboard/"+token+"?msg="+msg)
+						c.Redirect(http.StatusMovedPermanently, utils.SITE_URL_ADMIN_DASHBOARD+"/"+token+"?msg="+msg)
 					} else {
-						c.Redirect(http.StatusMovedPermanently, "/settings/"+token+"/"+adminId)
+						c.Redirect(http.StatusMovedPermanently, utils.SITE_URL_SETTING+"/"+token+"/"+adminId)
 					}
 				} else {
-					c.Redirect(http.StatusMovedPermanently, "/settings/"+token+"/"+adminId+"?msg="+utils.ERR_ADM_CREATE_PWD_ERR)
+					c.Redirect(http.StatusMovedPermanently, utils.SITE_URL_SETTING+"/"+token+"/"+adminId+"?msg="+utils.ERR_ADM_CREATE_PWD_ERR)
 				}
 			} else {
-				c.Redirect(http.StatusMovedPermanently, "/settings/"+token+"/"+adminId+"?msg="+utils.ERR_ADM_CREATE_REQ_FIELDS)
+				c.Redirect(http.StatusMovedPermanently, utils.SITE_URL_SETTING+"/"+token+"/"+adminId+"?msg="+utils.ERR_ADM_CREATE_REQ_FIELDS)
 			}
 		} else {
-			c.Redirect(http.StatusMovedPermanently, "/?msg="+utils.ERR_LOGIN_INV_TOKEN)
+			c.Redirect(http.StatusMovedPermanently, utils.SITE_URL_ADMIN_LOGIN+"?msg="+utils.ERR_LOGIN_INV_TOKEN)
 		}
 	} else {
-		c.Redirect(http.StatusMovedPermanently, "/?msg="+utils.ERR_LOGIN_INV_TOKEN)
+		c.Redirect(http.StatusMovedPermanently, utils.SITE_URL_ADMIN_LOGIN+"?msg="+utils.ERR_LOGIN_INV_TOKEN)
 	}
 }
 
@@ -237,18 +237,18 @@ func Deleteadminuser(c *gin.Context) {
 			if modifiedby != adminId {
 				msg := dbhelpers.Deleteadminuserutils(c, adminId, modifiedby)
 				if msg == "" {
-					c.Redirect(http.StatusMovedPermanently, "/admin/list/"+token)
+					c.Redirect(http.StatusMovedPermanently, utils.SITE_URL_ADMIN_LIST+"/"+token)
 				} else {
-					c.Redirect(http.StatusMovedPermanently, "/admin/list/"+token+"?msg="+msg)
+					c.Redirect(http.StatusMovedPermanently, utils.SITE_URL_ADMIN_LIST+"/"+token+"?msg="+msg)
 				}
 			} else {
-				c.Redirect(http.StatusMovedPermanently, "/admin/list/"+token+"?msg="+utils.ERR_ADM_DEL_SELF)
+				c.Redirect(http.StatusMovedPermanently, utils.SITE_URL_ADMIN_LIST+"/"+token+"?msg="+utils.ERR_ADM_DEL_SELF)
 			}
 		} else {
-			c.Redirect(http.StatusMovedPermanently, "/?msg="+utils.ERR_LOGIN_INV_TOKEN)
+			c.Redirect(http.StatusMovedPermanently, utils.SITE_URL_ADMIN_LOGIN+"?msg="+utils.ERR_LOGIN_INV_TOKEN)
 		}
 	} else {
-		c.Redirect(http.StatusMovedPermanently, "/?msg="+utils.ERR_LOGIN_INV_TOKEN)
+		c.Redirect(http.StatusMovedPermanently, utils.SITE_URL_ADMIN_LOGIN+"?msg="+utils.ERR_LOGIN_INV_TOKEN)
 	}
 }
 
@@ -279,9 +279,9 @@ func Listadminuser(c *gin.Context) {
 				"tokenobj":  viewModal,
 				"listadmin": adms})
 		} else {
-			c.Redirect(http.StatusMovedPermanently, "/?msg="+utils.ERR_LOGIN_INV_TOKEN)
+			c.Redirect(http.StatusMovedPermanently, utils.SITE_URL_ADMIN_LOGIN+"?msg="+utils.ERR_LOGIN_INV_TOKEN)
 		}
 	} else {
-		c.Redirect(http.StatusMovedPermanently, "/?msg="+utils.ERR_LOGIN_INV_TOKEN)
+		c.Redirect(http.StatusMovedPermanently, utils.SITE_URL_ADMIN_LOGIN+"?msg="+utils.ERR_LOGIN_INV_TOKEN)
 	}
 }

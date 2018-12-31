@@ -7,6 +7,24 @@ const (
 	DEF_PAGE_COUNT = 10
 	/* APP CONSTANTS END */
 
+	/* SITE URLS  START */
+	SITE_URL_INDEX                 = "/"
+	SITE_URL_ADMIN_LOGIN           = "/login"
+	SITE_URL_ADMIN_AUTHENTICATE    = "/authenticate"
+	SITE_URL_ADMIN_DASHBOARD       = "/dashboard"
+	SITE_URL_ADMIN_LOGOUT          = "/logout"
+	SITE_URL_ADMIN_CREATE          = "/admin/create"
+	SITE_URL_ADMIN_SAVE            = "/admin/save"
+	SITE_URL_ADMIN_LIST            = "/admin/list"
+	SITE_URL_ADMIN_EDIT            = "/admin/edit"
+	SITE_URL_ADMIN_UPDATE          = "/admin/update"
+	SITE_URL_ADMIN_CHANGE_USERNAME = "/admin/changeusername"
+	SITE_URL_ADMIN_CHANGE_PASSWORD = "/admin/changepassword"
+	SITE_URL_ADMIN_DELETE          = "/admin/delete"
+	SITE_URL_PROFILE               = "/profile"
+	SITE_URL_SETTING               = "/settings"
+	/* SITE URLS  END */
+
 	/* ERROR MESSAGE CODE START */
 	ERR_LOGIN_INV_USR_PSS       = "ERRLGN001"
 	ERR_LOGIN_INV_USR           = "ERRLGN002"

@@ -30,13 +30,13 @@ func Authenticate(c *gin.Context) {
 			if accessToken != "" {
 				c.Redirect(http.StatusMovedPermanently, "/dashboard/"+accessToken)
 			} else {
-				c.Redirect(http.StatusMovedPermanently, "/?msg="+utils.ERR_LOGIN_INV_TOKEN)
+				c.Redirect(http.StatusMovedPermanently, utils.SITE_URL_ADMIN_LOGIN+"?msg="+utils.ERR_LOGIN_INV_TOKEN)
 			}
 		} else {
-			c.Redirect(http.StatusMovedPermanently, "/?msg="+responseStr)
+			c.Redirect(http.StatusMovedPermanently, utils.SITE_URL_ADMIN_LOGIN+"?msg="+responseStr)
 		}
 	} else {
-		c.Redirect(http.StatusMovedPermanently, "/?msg="+utils.ERR_LOGIN_EMPTY_FIELDS)
+		c.Redirect(http.StatusMovedPermanently, utils.SITE_URL_ADMIN_LOGIN+"?msg="+utils.ERR_LOGIN_EMPTY_FIELDS)
 	}
 }
 
@@ -53,10 +53,10 @@ func Dashboard(c *gin.Context) {
 				"message":  viewObj,
 				"tokenobj": viewModal})
 		} else {
-			c.Redirect(http.StatusMovedPermanently, "/?msg="+utils.ERR_LOGIN_INV_TOKEN)
+			c.Redirect(http.StatusMovedPermanently, utils.SITE_URL_ADMIN_LOGIN+"?msg="+utils.ERR_LOGIN_INV_TOKEN)
 		}
 	} else {
-		c.Redirect(http.StatusMovedPermanently, "/?msg="+utils.ERR_LOGIN_INV_TOKEN)
+		c.Redirect(http.StatusMovedPermanently, utils.SITE_URL_ADMIN_LOGIN+"?msg="+utils.ERR_LOGIN_INV_TOKEN)
 	}
 }
 
@@ -65,11 +65,11 @@ func Logout(c *gin.Context) {
 	if token != "" {
 		isValidToken := dbhelpers.Logoutadmin(c, token)
 		if isValidToken == true {
-			c.Redirect(http.StatusMovedPermanently, "/?msg="+utils.ERR_LOGGED_OUT)
+			c.Redirect(http.StatusMovedPermanently, utils.SITE_URL_ADMIN_LOGIN+"?msg="+utils.ERR_LOGGED_OUT)
 		} else {
-			c.Redirect(http.StatusMovedPermanently, "/?msg="+utils.ERR_LOGIN_INV_TOKEN)
+			c.Redirect(http.StatusMovedPermanently, utils.SITE_URL_ADMIN_LOGIN+"?msg="+utils.ERR_LOGIN_INV_TOKEN)
 		}
 	} else {
-		c.Redirect(http.StatusMovedPermanently, "/?msg="+utils.ERR_LOGIN_INV_TOKEN)
+		c.Redirect(http.StatusMovedPermanently, utils.SITE_URL_ADMIN_LOGIN+"?msg="+utils.ERR_LOGIN_INV_TOKEN)
 	}
 }
