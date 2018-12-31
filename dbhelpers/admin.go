@@ -30,8 +30,8 @@ func Createadminuserutils(c *gin.Context, firstname string, lastname string, use
 }
 
 func Getadminuserbyidutils(c *gin.Context, adminId string) (adm models.Admin, err error) {
-	admobj, er := store.Getadminuserbyid(c, adminId)
-	log.Println("adminbyuserid", admobj.Id.Hex(), er)
+	adm, err = store.Getadminuserbyid(c, adminId)
+	log.Println("adminbyuserid", adm.Id.Hex(), err)
 	return
 }
 
