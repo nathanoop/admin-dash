@@ -67,7 +67,7 @@ type (
 		From     int
 		To       int
 		Total    int
-		Pagesl   int
+		Pages    int
 		Pagesarr []int
 	}
 )
