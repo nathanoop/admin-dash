@@ -58,7 +58,7 @@ func main() {
 	router.POST(utils.SITE_URL_ADMIN_SAVE+"/:token", handlers.Saveadminuser)
 	router.GET(utils.SITE_URL_ADMIN_LIST+"/:token", handlers.Listadminuser)
 	router.GET(utils.SITE_URL_ADMIN_EDIT+"/:token/:adminId", handlers.Editadminuser)
-	router.GETutils.SITE_URL_PROFILE+"/:token/:adminId", handlers.Editadminuser)
+	router.GET(utils.SITE_URL_PROFILE+"/:token/:adminId", handlers.Editadminuser)
 	router.POST(utils.SITE_URL_ADMIN_UPDATE+"/:token/:adminId", handlers.Updateadminuser)
 	router.GET(utils.SITE_URL_SETTING+"/:token/:adminId", handlers.Editsettingsadminuser)
 	router.POST(utils.SITE_URL_ADMIN_CHANGE_USERNAME+"/:token/:adminId", handlers.Changeadminusername)
