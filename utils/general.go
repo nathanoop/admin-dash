@@ -68,11 +68,12 @@ func Getpageobj(total int, page int) Pageobj {
 	fromRow, toRow := 0, 0
 	fromRow = (page * 10) + 1
 	toRow = (page + 1) * 10
-	arrPages = int[]
+	var arrPages []int
 	if noOfPages > 0 {
 		for i := 0; i < noOfPages; i++ {
-			arrPages[i] =i +1
+			arrPages[i] = i + 1
 		}
 	}
-	return Pageobj{fromRow, toRow, total, noOfPages, arrPages}
+	pageObj := Pageobj{fromRow, toRow, total, noOfPages, arrPages}
+	return pageObj
 }
