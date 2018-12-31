@@ -47,13 +47,27 @@ const (
 )
 
 type (
+	//Message Obect
+	//to showerror,success message
 	Message struct {
 		Code    string
 		Message string
 		Class   string
 	}
+	//Admintoken Obect
+	//has site token & login session object
 	Admintoken struct {
 		Token  string
 		AdmObj models.Admin
+	}
+
+	//Page Obect
+	//has page detailsfor List pagination
+	Pageobj struct {
+		From  int
+		To    int
+		Total int
+		Pagesl int
+		Pagesarr int[]
 	}
 )

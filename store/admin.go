@@ -115,10 +115,11 @@ func Updateadminuserpassword(c *gin.Context, password string, hashpassword []byt
 	}
 }
 
-func Listadminusers(c *gin.Context, limit int, skip int) (adms []models.Admin, err error) {
+func Listadminusers(c *gin.Context, limit int, skip int) (adms []models.Admin, total int, err error) {
 	ds := c.MustGet("db").(*mgo.Database)
 	n := ds.C(models.CollectionAdmin)
 	accountstatusObj := bson.M{"accountstatus": true}
+	total, err = n.Find(accountstatusObj).Count()
 	if skip > 0 {
 		err := n.Find(accountstatusObj).Sort("-modifiedon").Skip(skip).Limit(limit).All(&adms)
 		log.Println("skip listing err", err)

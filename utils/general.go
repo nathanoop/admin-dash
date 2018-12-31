@@ -1,7 +1,6 @@
 package utils
 
 import (
-	"log"
 	"regexp"
 )
 
@@ -53,13 +52,27 @@ func Notificationobjfromstr(msg string) Message {
 		cls = "alert-danger"
 	}
 	viewObj := Message{msg, msgStr, cls}
-	log.Println("Notificationobjfromstr", viewObj)
 	return viewObj
 }
 
-func getBrowser(uastr string) string {
+func Getbrowser(uastr string) string {
 	regexpStr := `(?i)(firefox|msie|chrome|safari)[/\s]([/\d.]+)`
 	r, _ := regexp.Compile(regexpStr)
 	match := r.FindString(uastr)
 	return match
+}
+
+func Getpageobj(total int, page int) Pageobj {
+	maxPageCount := DEF_PAGE_COUNT
+	noOfPages := total % maxPageCount
+	fromRow, toRow := 0, 0
+	fromRow = (page * 10) + 1
+	toRow = (page + 1) * 10
+	arrPages = int[]
+	if noOfPages > 0 {
+		for i := 0; i < noOfPages; i++ {
+			arrPages[i] =i +1
+		}
+	}
+	return Pageobj{fromRow, toRow, total, noOfPages, arrPages}
 }

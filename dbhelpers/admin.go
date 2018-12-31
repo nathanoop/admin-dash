@@ -56,14 +56,15 @@ func Updateadminuserpasswordutils(c *gin.Context, password string, modifiedby st
 	return msg
 }
 
-func Listadminusersutils(c *gin.Context, page int) (adms []models.Admin, err error) {
+func Listadminusersutils(c *gin.Context, page int) (adms []models.Admin, total int, err error) {
 	limit := utils.DEF_PAGE_COUNT
 	skip := 0
+	total := 0
 	if page > 0 {
 		skip = limit * page
 	}
-	adms, err = store.Listadminusers(c, limit, skip)
-	log.Println("Listadminusersutils", len(adms), err)
+	adms, total, err = store.Listadminusers(c, limit, skip)
+	log.Println("Listadminusersutils", len(adms), total, err)
 	return
 }
 

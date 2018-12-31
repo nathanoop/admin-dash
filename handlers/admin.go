@@ -268,16 +268,18 @@ func Listadminuser(c *gin.Context) {
 			if p == "" {
 				page = 0
 			}
-			adms, err := dbhelpers.Listadminusersutils(c, page)
+			adms, total, err := dbhelpers.Listadminusersutils(c, page)
 			if err != nil {
 				msg := utils.ERR_ADMIN_LISTING
 				viewObj = utils.Notificationobjfromstr(msg)
 			}
+			pageObj := utils.Getpageobj(total, page)
 			c.HTML(http.StatusOK, "admin/adminlist", gin.H{
 				"title":     "List  Admins  ",
 				"message":   viewObj,
 				"tokenobj":  viewModal,
-				"listadmin": adms})
+				"listadmin": adms,
+				"pageobj":   pageObj})
 		} else {
 			c.Redirect(http.StatusMovedPermanently, utils.SITE_URL_ADMIN_LOGIN+"?msg="+utils.ERR_LOGIN_INV_TOKEN)
 		}

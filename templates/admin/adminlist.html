@@ -41,6 +41,16 @@
                                   {{end}}
                               </tbody>
                           </table>
+                          <div class="dataTables_info" id="admin_info" role="status" aria-live="polite">Showing {{.pageobj.From}}  to {{.pageobj.To}}  of {{.pageobj.Total}} entries</div>
+                          {{if .pageobj.Pages }}
+                          <div class="dataTables_paginate paging_simple_numbers" id="admin_paginate">
+                              <span>
+                                    {{range $key,$value := .pageobj.arrPages }}
+                                    <a class="paginate_button " aria-controls="admin" href="/admin/list/{{$.tokenobj.Token}}?p={{ $key}}" data-dt-idx="{{$value}}" tabindex="{{$key}}">{{$value}}</a>
+                                    {{end}}
+                            </span>
+                        </div>
+                        {{end}}
                       </div>
                   </div>
               </div>
