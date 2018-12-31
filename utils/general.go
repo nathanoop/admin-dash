@@ -1,7 +1,6 @@
 package utils
 
 import (
-	"log"
 	"regexp"
 )
 
@@ -76,7 +75,6 @@ func Getpageobj(total int, page int) Pageobj {
 			arrPages[i] = 1 + i
 		}
 	}
-	log.Println("Getpageobj", fromRow, toRow, total, noOfPages, arrPages)
 	pageObj := Pageobj{fromRow, toRow, total, noOfPages, arrPages}
 	return pageObj
 }
