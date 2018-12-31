@@ -64,10 +64,10 @@ type (
 	//Page Obect
 	//has page detailsfor List pagination
 	Pageobj struct {
-		From  int
-		To    int
-		Total int
-		Pagesl int
-		Pagesarr int[]
+		From     int
+		To       int
+		Total    int
+		Pagesl   int
+		Pagesarr []int
 	}
 )
