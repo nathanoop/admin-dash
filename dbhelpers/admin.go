@@ -1,8 +1,9 @@
 package dbhelpers
 
 import (
-	"admin-dash/models"
 	"log"
+
+	"github.com/nathanoop/admin-dash/models"
 
 	"github.com/nathanoop/admin-dash/utils"
 
@@ -61,8 +62,8 @@ func Listadminusersutils(c *gin.Context, page int) (adms []models.Admin, err err
 	if page > 0 {
 		skip = limit * page
 	}
-	lstadms, er := store.Listadminusers(c, limit, skip)
-	log.Println("adminbyuserid", len(lstadms), er)
+	adms, err = store.Listadminusers(c, limit, skip)
+	log.Println("Listadminusersutils", len(adms), er)
 	return
 }
 
