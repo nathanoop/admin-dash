@@ -7,7 +7,7 @@ import (
 )
 
 const (
-	// CollectionArticle holds the name of the articles collection
+	// CollectionAdminSession holds the name of the Admin user login session collection
 	CollectionAdminSession = "AdminSession"
 )
 

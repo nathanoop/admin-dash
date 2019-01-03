@@ -7,7 +7,7 @@ import (
 )
 
 const (
-	// CollectionArticle holds the name of the articles collection
+	// CollectionAdmin holds the name of the Admin user collection
 	CollectionAdmin = "Admin"
 )
 
